@@ -10,6 +10,7 @@ app = Flask(__name__)
 vk = vk_api.VkApi(token=os.environ['VK_API_ACCESS_TOKEN'])
 allowed_ids = map(lambda num: int(num), os.environ['ALLOWED_IDS'].split(','))
 
+print(allowed_ids)
 
 @app.route("/", methods=['POST', 'GET'])
 def hello():
@@ -27,7 +28,7 @@ def hello():
 
             print(user_id)
 
-            if allowed_ids in allowed_ids:
+            if user_id in allowed_ids:
 
                 print('got one with allowed id')
                 
