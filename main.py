@@ -56,8 +56,11 @@ def hello():
                 print(users)
 
                 for user in users:
-                    vk.method('messages.send', {'user_id': user, 'attachment': f'wall{post_id}',
-                                                'random_id': randint(0, 2147483647)})
+                    try:    
+                        vk.method('messages.send', {'user_id': user, 'attachment': f'wall-{post_id}',
+                                                    'random_id': randint(0, 2147483647)})
+                    except:
+                        continue                          
             else:
                 vk.method('messages.send', {'user_id': user_id, 'message': f'Hello ! Your id is {user_id}. You have '
                                                                            f'no permission to interact with me',
