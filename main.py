@@ -6,7 +6,7 @@ import os
 app = Flask(__name__)
 
 vk = vk_api.VkApi(token=os.environ['VK_API_ACCESS_TOKEN'])
-vk.auth()
+#vk.auth()
 
 @app.route("/", methods=['POST', 'GET'])
 def hello():
