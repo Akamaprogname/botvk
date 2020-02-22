@@ -6,22 +6,22 @@ import os
 app = Flask(__name__)
 
 vk = vk_api.VkApi(token=os.environ['VK_API_ACCESS_TOKEN'])
-#vk.auth()
+
 
 @app.route("/", methods=['POST', 'GET'])
 def hello():
     if request.method == 'GET':
-        # Default hujeta
         return "This is bot!"
     else:
-        if not request.json or not 'title' in request.json:
-            abort(400)
         # Real logic
-        requestJson = request.get_json(force=True)
+        request_json = request.get_json(force=True)
 
-        if requestJson['type'] == 'message_new':
-            userId = requestJson['object']['user_id']
-            vk.method('message.send', {'user_id': userId, 'message': 'Pashol nahui'})
+        if request_json['type'] == 'message_new':
+            user_id = request_json['object']['user_id']
+            vk.method('message.send', {'user_id': user_id, 'message': 'Pashol nahui'})
+            return 'ok'
+        elif request_json['type'] == 'confirmation':
+            return os.environ['CALLBACK_API_CONFIRMATION_TOKEN']
         else:
             return "Unsupported request type"
 
