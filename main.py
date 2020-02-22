@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, abort
 from flask import request
 import vk_api
 import os
