@@ -39,7 +39,7 @@ def hello():
 
                 print(post_id)
 
-                usersResponse = vk.method('users.get')['response']
+                usersResponse = vk.method('users.get')
 
                 print('this is user response, heh')
                 print(usersResponse)
