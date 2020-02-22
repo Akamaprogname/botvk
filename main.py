@@ -28,6 +28,7 @@ def hello():
             user_id = request_json['object']['user_id']
 
             print(user_id)
+            print(allowed_ids)
 
             if user_id in allowed_ids:
 
