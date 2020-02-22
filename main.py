@@ -12,6 +12,7 @@ allowed_ids = map(lambda num: int(num), os.environ['ALLOWED_IDS'].split(','))
 
 print(allowed_ids)
 
+
 @app.route("/", methods=['POST', 'GET'])
 def hello():
     print('got request, heh')
@@ -31,7 +32,7 @@ def hello():
             if user_id in allowed_ids:
 
                 print('got one with allowed id')
-                
+
                 url = request_json['object']['body']
                 parsed_url = urlparse(url)
                 parsed_qs = parse_qs(parsed_url.query)
@@ -39,17 +40,23 @@ def hello():
 
                 print(post_id)
 
-                usersResponse = vk.method('groups.getMembers', {'group_id': post_id.split('_')[0]})
+                users_response = vk.method('groups.getMembers', {'group_id': post_id.split('_')[0]})
 
                 print('this is user response, heh')
-                print(usersResponse)
+                print(users_response)
 
-                users = usersResponse['response']
+                total_user_count = users_response['count']
+                users = users_response['items']
+
+                while len(users) != total_user_count:
+                    additional_users_response = vk.method('groups.getMembers', {'group_id': post_id.split('_')[0],
+                                                                                'offset': len(users)})
+                    users = users + additional_users_response['items']
 
                 print(users)
 
                 for user in users:
-                    vk.method('messages.send', {'user_id': user['id'], 'attachment': f'wall{post_id}',
+                    vk.method('messages.send', {'user_id': user, 'attachment': f'wall{post_id}',
                                                 'random_id': randint(0, 2147483647)})
             else:
                 vk.method('messages.send', {'user_id': user_id, 'message': f'Hello ! Your id is {user_id}. You have '
