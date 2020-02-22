@@ -18,7 +18,7 @@ def hello():
 
         if request_json['type'] == 'message_new':
             user_id = request_json['object']['user_id']
-            vk.method('message.send', {'user_id': user_id, 'message': 'Pashol nahui'})
+            vk.method('messages.send', {'user_id': user_id, 'message': 'Pashol nahui'})
             return 'ok'
         elif request_json['type'] == 'confirmation':
             return os.environ['CALLBACK_API_CONFIRMATION_TOKEN']
