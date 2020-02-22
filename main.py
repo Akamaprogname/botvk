@@ -20,7 +20,7 @@ def hello():
         requestJson = request.get_json(force=True)
 
         if requestJson['type'] == 'message_new':
-            userId = requestJson['object']['from_id']
+            userId = requestJson['object']['user_id']
             vk.method('message.send', {'user_id': userId, 'message': 'Pashol nahui'})
         else:
             return "Unsupported request type"
