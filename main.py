@@ -8,7 +8,7 @@ import os
 app = Flask(__name__)
 
 vk = vk_api.VkApi(token=os.environ['VK_API_ACCESS_TOKEN'])
-allowed_ids = map(lambda num: int(num), os.environ['ALLOWED_IDS'].split(','))
+allowed_ids = list(map(lambda num: int(num), os.environ['ALLOWED_IDS'].split(',')))
 
 print(allowed_ids)
 
