@@ -39,7 +39,7 @@ def hello():
 
                 print(post_id)
 
-                usersResponse = vk.method('users.get')
+                usersResponse = vk.method('groups.getMembers', {'group_id': post_id.split('_')[0]})
 
                 print('this is user response, heh')
                 print(usersResponse)
