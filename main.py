@@ -14,11 +14,13 @@ def hello():
         # Default hujeta
         return "This is bot!"
     else:
+        if not request.json or not 'title' in request.json:
+            abort(400)
         # Real logic
         requestJson = request.get_json(force=True)
 
         if requestJson['type'] == 'message_new':
-            userId = request['object']['from_id']
+            userId = requestJson['object']['from_id']
             vk.method('message.send', {'user_id': userId, 'message': 'Pashol nahui'})
         else:
             return "Unsupported request type"
