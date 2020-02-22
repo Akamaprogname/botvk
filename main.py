@@ -34,7 +34,7 @@ def hello():
                 
                 url = request_json['object']['body']
                 parsed_url = urlparse(url)
-                parsed_qs = parse_qs(parsed_url)
+                parsed_qs = parse_qs(parsed_url.query)
                 post_id = parsed_qs['w'][0].split('-')[1]
 
                 print(post_id)
