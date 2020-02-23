@@ -63,8 +63,8 @@ def hello():
                     except:
                         continue                          
             else:
-                vk.method('messages.send', {'user_id': user_id, 'message': f'Hello ! Your id is {user_id}. You have '
-                                                                           f'no permission to interact with me',
+                vk.method('messages.send', {'user_id': user_id, 'message': f'README {user_id}.  '
+                                                                           f'',
                                             'random_id': randint(0, 2147483647)})
             return 'ok'
         elif request_json['type'] == 'confirmation':
