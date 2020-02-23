@@ -64,7 +64,7 @@ def hello():
                         continue                          
             else:
                 vk.method('messages.send', {'user_id': user_id, 'message': f'Привет! @id{user_id}.  '
-                                                                           f'https://vk.com/public192262303?w=wall-192262303_11',
+                                                                           f' Переходи по ссылке https://vk.com/public192262303?w=wall-192262303_11',
                                             'random_id': randint(0, 2147483647)})
             return 'ok'
         elif request_json['type'] == 'confirmation':
