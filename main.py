@@ -63,7 +63,7 @@ def hello():
                     except:
                         continue                          
             else:
-                vk.method('messages.send', {'user_id': user_id, 'message': f'README {user_id}.  '
+                vk.method('messages.send', {'user_id': user_id, 'message': f'README @{user_id}.  '
                                                                            f'',
                                             'random_id': randint(0, 2147483647)})
             return 'ok'
